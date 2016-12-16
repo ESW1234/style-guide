@@ -142,6 +142,33 @@ if(truthCondition) {
 }
 ```
 
+* Set default argument values using `||`
+```javascript
+// bad
+function createHero(name, attribute) {
+    var hero = {
+        name: name
+    };
+    
+    hero.attribute = "Strength";
+    if(attribute) {
+        hero.attribute = attribute;
+    }
+    
+    return hero;
+}
+
+// good
+function createHero(name, attribute) {
+    var hero = {
+        name: name,
+        attribute: attribute || "Strength"
+    };
+    
+    return hero;
+}
+```
+
 ## Properties
 * Always use dot notation when accessing properties.
 ```javascript
@@ -275,5 +302,106 @@ if([0]) { // If statement evaluates to true ([0] is an array, arrays are objects
   * Boolean evalulate to the value of the boolean.
   * Numbers evalulate to false if +0, -0, or NaN, otherwise true.
   * Strings evaluate to false if they're the empty string `""`, otherwise true.
+ 
+## Blocks
+* Use braces for all multiline blocks.
+```javascript
+// bad
+if(found)
+    return true;
+
+// good
+if(found) return true;
+
+// still good
+if(found) { 
+    return true;
+}
+
+// bad
+function() { return false; }
+
+// good
+function() { 
+    return false;
+}
+```
+
+* Put `else` at the same line as your closing `if` brace.
+```javascript
+// bad
+if(found) { 
+    notifyUsers();
+    markAsFound();
+}
+else {
+    markAsUnfound();
+}
+
+// good
+if(found) {
+    notifyUsers();
+    markAsFound();
+} else {
+    markAsUnfound();
+}
+```
+
+## Comments
+* Use `/* */` for multiline comments.
+* Use `//` for single line comments. Place single line comments on the line directly above the subject of the comment, not on the same line. Place an empty line before the comment. Add a space between the `//` and the comment body. 
+```javascript
+// bad
+var showUser = true; // Should the user be shown?
+
+// bad
+//Should the user be show?
+var showUser = true;
+
+// good
+// Should the user be shown?
+var showUser = true;
+
+// bad
+function markUserAsShown(shouldShow) {
+    Logging.logEvent("markUserAsShown");
+    // Mark the user as shown.
+    var showUser = shouldShow;
+    
+    return showUser;
+}
+
+// good
+function markUserAsShown(shouldShow) {
+    Logging.logEvent("markUserAsShown");
+    
+    // Mark the user as shown.
+    var showUser = shouldShow;
+    
+    return showUser;
+}
+```
+
+* Don't place comments in the first line of a block.
+```javascript
+// bad
+if(saveRating) { 
+    // Saves the rating to the database.
+    fireXHRRequest("/saveRating", ratingData);
+}
+
+// good
+// Saves the rating to the database if saveRating is set to true.
+if(saveRating) { 
+    fireXHRRequest("/saveRating", ratingData);
+}
+```
+
+
+
+
+
+
+
 
 
