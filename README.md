@@ -7,7 +7,6 @@
 * [Java](https://github.com/ESW1234/style-guide/tree/master/java)
 * [Aura](https://github.com/ESW1234/style-guide/tree/master/aura)
 * [CSS](https://github.com/ESW1234/style-guide/tree/master/css)
-* 
 
 ---
 
