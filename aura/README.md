@@ -12,6 +12,7 @@
 <aura:attribute name="user" type="Object" description="The curren user." />
 ```
 
+* Prefer `aura:iteration` to `$A.createComponent`.
 * Use `empty` to check for undefined, null, an empty array, or an empty string, rather than equality.
 ```html
 <!-- bad -->
