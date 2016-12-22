@@ -169,6 +169,30 @@ function createHero(name, attribute) {
 }
 ```
 
+* Prefer named function expressions. 
+```javascript
+// bad
+var sumRuns = function(innings) { 
+    ...
+};
+
+// acceptable, but not preferred.
+window.addEventListener("scroll", function() {
+    ...
+}, false);
+
+// good
+window.addEventListener("scroll", function onScroll() {
+    ...
+}, false);
+
+// good
+var sumRuns = function sumRuns(innings) {
+    ...
+};
+```
+_Named function expressions show up as the function's name rather than `(anonymous)` in the debugger. There's some issues with IE8, but we don't support IE8, so who cares._
+
 ## Properties
 * Always use dot notation when accessing properties.
 ```javascript
@@ -397,6 +421,136 @@ if(saveRating) {
 }
 ```
 
+## Whitespace
+* ... we'll figure this out eventually.
+
+## Punctuation
+* Avoid leading commas.
+```javascript
+// bad
+var robots = [
+    "R2D2"
+    , "Deckard"
+    , "Johnny 5"
+];
+
+// good
+var robots = [
+    "R2D2",
+    "Deckard",
+    "Johnny 5"
+];
+```
+
+* Avoid a final trailing comma.
+```javascript
+// bad
+var validCatNames = [
+    "Mittens",
+    "Socks",
+    "Strygwyr",
+];
+
+// good 
+var validCatNames = [
+    "Mittens",
+    "Socks",
+    "Strygwyr"
+];
+```
+
+* Use them, except on function declarations.
+```javascript
+// bad
+function doSomething() { 
+    ...
+};
+
+// bad
+var myFunction = function doSomething() {
+    ...
+}
+
+// good
+function doSomething() { 
+    ...
+}
+
+// good
+var myFunction = function doSomething() { 
+    ...
+};
+```
+_Function expressions require a semicolon becuase you're doing assignment, just as `var myNumber = 3;` requires a semicolon_
+
+## Typecasting
+* Coerse types at the beginning of a statement, but avoid unnecessary concatination.
+```javascript
+// bad
+var userId = this.id + '';
+
+// good
+var userId = '' + this.id;
+
+// bad
+var userId = '' + this.id + '0000';
+
+// good
+var userId = this.id + '0000';
+```
+
+* Use `Number` to cast strings to numbers, unless you need a radix that isn't ten.
+```javascript
+var userInput = '234';
+
+// bad
+var myValue = new Number(userInput);
+
+// bad
+var myValue = +userInput;
+
+// bad, but see note below.
+var myValue = userInput >> 0;
+
+// bad, no radix
+var myValue = parseInt(userInput);
+
+// good
+var myValue = Number(userInput);
+
+// good, if radix != 10
+var myValue = parseInt(userInput, 8);
+```
+_Bitshifting is the quickest way to parse an integer, but rarely if ever do you need that tiny performance enhancement. If you're doing something crazy and integer conversion is your bottleneck, make a comment above it explaining why you used bitshift._
+
+* Use `Boolean` or double bang to cast to a boolean.
+```
+var userInput = 0;
+
+// bad
+var myValue = new Boolean(userInput);
+
+// good
+var myValue = Boolean(userInput);
+
+// good
+var myValue = !!userInput;
+```
+_Double bang is twice as fast, but half as readable. Prefer `Boolean` unless you have performance concerns._
+
+## Naming
+* Be descriptive.
+```javascript
+// bad
+function do() {
+    ...
+}
+
+// good
+function validateUserFormContent() {
+    ...
+}
+```
 
 
 
