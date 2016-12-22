@@ -613,3 +613,69 @@ function () {
 _[`bind `is the best.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)_
 
 
+## Accessors
+* You don't need to make accessors for properties.
+* If for whatever reason you're feeling like making them (maybe because you have a computed getter), use `getVal()` and `setVal(value)`
+```javascript
+// bad
+hero.primaryAttribute();
+
+// good
+hero.getPrimaryAttribute();
+
+// bad
+hero.primaryAttribute("Strength");
+
+// good
+hero.setPrimaryAttribute("Strength");
+```
+
+* If it's a getter for a boolean, use `isVal` or `hasVal`
+```javascript
+// bad
+if(!hero.primaryAttribute()) {
+    return false;
+}
+
+// good
+if(!hero.hasPrimaryAttribute()) {
+    return false;
+}
+```
+
+* Don't overwrite the prototype.
+```
+function Tower() {
+    console.log('New hero created.');
+}
+
+// bad
+Tower.prototype = {
+    targetUnit: function targetUnit(unit) {
+        ...
+    },
+    hasBackdoorProtection: function hasBackdoorProtection() {
+        ...
+    }
+};
+
+// good
+Tower.prototype.targetUnit = function targetUnit(unit) {
+    ...
+}
+
+Tower.prototype.hasBackdoorProtection = function hasBackdoorProtection() {
+    ...
+}
+```
+_Overwriting the prototype makes inheritance impossible._
+
+* If you want to chain methods, have them return `this`. 
+
+
+## Credits
+* Based on the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript/tree/es5-deprecated/es5).
+
+
+
+
