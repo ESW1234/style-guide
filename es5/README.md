@@ -552,10 +552,64 @@ function validateUserFormContent() {
 }
 ```
 
+* Use camelCase for objects, functions, and variables.
+```javascript
+// bad
+var LOUDER_VARIABLES_STORE_DATA_BETTER = 0;
+var beware_of_snake_case = {};
+var o = {}; //Exception: for(var i....), although avoid for loops unless necessary.
 
+// good
+var myBrandNewObject = {};
+function addDataToThatBrandNewObject() {}
+```
 
+* Use PascalCase for constructors and classes.
+```javascript
+// bad 
+function user(first, last, email) {
+    ...
+}
 
+var badUser = new user('wrong', 'case', 'disappointing@baduser.com');
 
+// good
+function User(first, last, email) {
+    ...
+}
 
+var goodUser = new User('looks', 'better', 'hurray@gooduser.com');
+```
+
+* Don't use leading or trailing underscores.
+```javascript
+// bad
+this._firstName = "Test";
+this.__lastName__ = "Person";
+this.email_ = "me@test.com";
+
+// good
+this.firstName = "Test";
+```
+_Javascript doesn't have private properties or methods, no matter how you name your variables. The only thing you can do to keep them private is keep them in the scope of the object on it's creation, but not part of the object itself. Adding underscores is just misleading._
+
+* Don't make references to `this`. Use `bind`.
+```javascript
+// bad
+function () { 
+    var self = this;
+    return function() { 
+        console.log(self);
+    }
+}
+
+// good
+function () { 
+    return function() { 
+        console.log(self);
+    }.bind(this);
+}
+```
+_[`bind `is the best.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)_
 
 
