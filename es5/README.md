@@ -315,7 +315,7 @@ function() {
 ```javascript
 // Abandon all hope, ye who enter here.
 if([0]) { // If statement evaluates to true ([0] is an array, arrays are objects, objects are true).
-    console.log([0] == true); // false (true is converted to a number, then compared against [0])
+    console.log([0] == true); // false (true is converted to a number, [0] is converted to a string then to a number, 0 != 1)
     console.log(!![0] == true); //true ([0] is cast to a boolean, then compared against true)
 }
 ```
