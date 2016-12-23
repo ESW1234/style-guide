@@ -308,6 +308,7 @@ function() {
     }
 }
 ```
+* Use `undefined`, not `null`.
 
 ## Comparison
 * Avoid == and !== (truthy and falsy), and use === and !==.
