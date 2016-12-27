@@ -539,6 +539,22 @@ var myValue = !!userInput;
 ```
 _Double bang is twice as fast, but half as readable. Prefer `Boolean` unless you have performance concerns._
 
+* Avoid `instanceof`. `typeof` is fine, but will return `Object` for arrays; use `Array.isArray` to determine if a variable is an array.
+```javascript
+var teams = ["EG", "Navi", "Alliance"];
+// bad
+var isArray = teams instanceof Array; //true, but fails with LockerService enabled.
+
+// bad
+var isArray = typeof teams === "Array"; //false, typeof teams is "Object"
+
+// good
+var isNumber = typeof teams === "Number"; //false
+
+// good
+var isArray = Array.isArray(teams); //true
+```
+_Aura does not allow the use of instanceof when LockerService is enabled._
 ## Naming
 * Be descriptive.
 ```javascript
