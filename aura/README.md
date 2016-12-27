@@ -47,4 +47,4 @@ _Note that `empty` returns true for the empty object `{}`._
     }
 })
 ```
-_Aura doesn't care how you define it, it becomes an anonymous function on compilation either way._
+_Aura doesn't care how you define a function, it becomes an anonymous function on compilation either way._
